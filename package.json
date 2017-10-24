@@ -1,0 +1,32 @@
+{
+  "name": "react-handson-for-beginner",
+  "version": "1.0.0",
+  "description": "A React Hands-on resources for beginners",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koba04/react-handson-for-beginner.git"
+  },
+  "keywords": [],
+  "author": "koba04",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koba04/react-handson-for-beginner/issues"
+  },
+  "homepage": "https://github.com/koba04/react-handson-for-beginner#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "dependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}
