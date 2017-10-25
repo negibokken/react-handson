@@ -5,23 +5,19 @@ import {fetchHackerNews} from '../api';
 
 const container = document.querySelector('.js-app');
 
-class NewsItems extends React.Component {
+class NewsItem extends React.Component {
   constructor() {
     super();
   }
   render() {
-    let rank = this.props.rank
-    let url = this.props.url;
-    let title = this.props.title
-    let by = this.props.by
-    let kids = this.props.kids;
+    let { rank, url, title, by, kids } = this.props;
     return (
       <ul>
         <li>
           <span>{rank}</span>
           <span><a href={url} target="blank">{title}</a></span>
           <span>(by {by})</span>
-          <span>{kids}comments</span>
+          <span>{kids.length} comments</span>
         </li>
       </ul>
     );
@@ -34,13 +30,16 @@ class News extends React.Component {
   }
   render() {
     let news = this.props.news;
-    return news.map((ni) => {
+    console.log(news);
+    if (news.length === 0) { return <div></div>; }
+    return news.map((ni, idx) => {
       return <NewsItem
+          key={idx}
           rank={ni.rank}
           url={ni.url}
           title={ni.title}
           by={ni.by}
-          kids={ni.kids}
+          kids={ni.kids || []}
         />
     });
   }
@@ -57,17 +56,16 @@ class App extends React.Component {
   componentDidMount() {
     fetchHackerNews().then((news) => {
       this.setState({
-        news: JSON.stringify(news, null, ' ')
+        news: JSON.parse(JSON.stringify(news, null, ' '))
       });
     });
-    console.log(this.props.news);
   }
 
   render() {
     return (
       <div>
         {/* サーバーからデータを取得したあとは、NewsのComponentを表示して、その中でNewsItemのComponentを表示してみましょう */}
-        <News news={this.props.news} />
+        <News news={this.state.news} />
       </div>
     )
   }
